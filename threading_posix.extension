@@ -1,17 +1,14 @@
-# The per-OS implementation of the threading concern (its implementation
-# package; the concern interface is the threading package). One body serves
-# the posix family - linux and darwin: pthreads are the reference on both,
-# so one file serves both (no platform branch in this driver).
-format_version = 1
+format_version = 2
 name   = "threading_posix"
 kind   = "implementation"
-api    = "threading"
-supported_platforms = ["linux", "macos"]
-version        = "1.0.0"
-implements_api = "1.0.0"
-link_libraries = ["pthread"]
+version = "2.0.0"
+implements = [
+  { interface = "threading", window = "1.0.0" },
+]
 requires = [
-  { package = "threading", window = "1.0.0" },
   { package = "memory", window = "1.1.0" },
   { package = "logging", window = "1.1.0" },
 ]
+source   = "threading_posix.c"
+supported_platforms = ["linux", "macos"]
+link_libraries = ["pthread"]
